@@ -74,8 +74,8 @@ exports.IssueTypeTitleMap = {
     [EIssueType.SAM_REPORT]: "Sofware Asset Management Report",
     [EIssueType.HAM_REPORT]: "Hardware Asset Management Report",
     [EIssueType.ADMIN_ROLE_REPORT]: "Admin Count Above Limit",
-    [EIssueType.INSTANCE_LICENSES]: "Licenses not being used.",
-    [EIssueType.UNDERUSED_LICENSES]: "Underutilized licenses",
+    [EIssueType.INSTANCE_LICENSES]: "Licenses Not Being Used",
+    [EIssueType.UNDERUSED_LICENSES]: "Underutilized Licenses",
     [EIssueType.ATTACHMENT_STATS]: "Attachment stats",
     [EIssueType.SOFTWARE_ENTITLEMENTS]: "Software Entitlements",
 };
@@ -93,13 +93,13 @@ exports.CategoryToIssueTypesMap = {
         EIssueType.DUPLICATE_UPDATE_SETS,
         EIssueType.SAM_REPORT,
         EIssueType.HAM_REPORT,
-        EIssueType.SOFTWARE_ENTITLEMENTS,
     ],
     [ECategory.UPGRADABILITY]: [
         EIssueType.LAST_SYSTEM_UPGRADE,
         EIssueType.REPORT_3_MONTHS,
         EIssueType.INSTANCE_LICENSES,
         EIssueType.UNDERUSED_LICENSES,
+        EIssueType.SOFTWARE_ENTITLEMENTS,
     ],
     [ECategory.SECURITY]: [
         EIssueType.ACL,
