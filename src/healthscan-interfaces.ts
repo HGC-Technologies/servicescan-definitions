@@ -21,7 +21,6 @@ export type TSlowQueriesSection = TSectionTemplate<{
   issueType: EIssueType.SLOW_QUERIES;
   sectionConfig: {
     slowQueryThresholdMS: number;
-    maxDisplayedRecords: number;
     totalQueries: number;
   };
   scanDetails: {
@@ -142,7 +141,6 @@ interface TableEntries {
   tableType: "NORMAL" | "CUSTOM" | "SYS" | "TASK";
 }
 export interface IPDFLargeTablesData {
-  maxDisplayedRecords: number;
   largeTableThreshold: number;
   largeTables: Array<TableEntries>;
 }
@@ -158,14 +156,12 @@ interface ReportQueries {
 
 export interface IPDFLongReportData {
   longReportThresholdMS: number;
-  maxDisplayedRecords: number;
   totalQueries: number;
   longReportQueries: Array<ReportQueries>;
 }
 
 export interface IPDFLongTitlesData {
   longTitleStringLength: number;
-  maxDisplayedRecords: number;
   totalRecords: number;
   affectedRecords: Array<{
     title: string;
@@ -198,7 +194,6 @@ export interface ScriptIncludeData {
 
 export interface IPDFSlowQueryData {
   slowQueryThresholdMS: number;
-  maxDisplayedRecords: number;
   totalQueries: number;
   slowQueries: Array<{
     url: string;
@@ -212,7 +207,6 @@ export interface IPDFSlowQueryData {
 
 export interface IPDFSlowScriptsData {
   execTimeThresholdMS: number;
-  maxDisplayedRecords: number;
   slowScripts: Array<{
     label: string;
     avgExecTimeInMS: number;
