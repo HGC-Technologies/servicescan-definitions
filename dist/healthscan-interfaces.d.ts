@@ -1,3 +1,36 @@
+import { EIssueType } from "healthscan-db-types";
+/**
+ * Every section must have these properties defined.
+ * @param issueType - the section's type
+ * @param sectionConfig - configurable variables like threshold/limits, useful for doing logic on scanDetails.
+ * @param scanDetails - an array of records associated with the section.
+ */
+interface ISectionBase {
+    issueType: EIssueType;
+    sectionConfig: unknown;
+    scanDetails: unknown[];
+}
+type TSectionTemplate<T extends ISectionBase> = T & {
+    issueType: T["issueType"];
+    sectionConfig: T["sectionConfig"];
+    scanDetails: T["scanDetails"];
+};
+export type TSlowQueriesSection = TSectionTemplate<{
+    issueType: EIssueType.SLOW_QUERIES;
+    sectionConfig: {
+        slowQueryThresholdMS: number;
+        maxDisplayedRecords: number;
+        totalQueries: number;
+    };
+    scanDetails: {
+        url: string;
+        execTimeInMS: number;
+        query: string;
+        hhmmss: string;
+        count: number;
+        lastRunDate: string;
+    }[];
+}>;
 export interface IPDFACLDBLookupData {
     name: string;
     id: string;
@@ -181,31 +214,6 @@ export interface IPDAdminRoleData {
     email: string;
     url: string;
     lastLogin: string;
-}
-export interface IJsonData {
-    ACLDBLookupData?: IPDFACLDBLookupData[];
-    ACLData?: IPDFACLData[];
-    DuplicateFieldData?: IPDFDuplicateFieldData[];
-    SlowQueryData?: IPDFSlowQueryData;
-    LargeTablesData?: IPDFLargeTablesData;
-    LongTitlesData?: IPDFLongTitlesData;
-    GlobalUIScriptData?: IPDFUIScriptData[];
-    BusyFormsData?: IPDFBusyFormsData[];
-    SlowScriptsData?: IPDFSlowScriptsData;
-    GlobalBRScriptData?: IPDFBRScriptData[];
-    instanceErrorData?: IPDFInstanceErrorData;
-    LongReportData?: IPDFLongReportData;
-    DuplicateScriptIncludes?: IPDFDuplicateScriptIncludes[];
-    ScriptIncludeData?: ScriptIncludeData;
-    ReportsNotRunFor3MonthData?: ReportThreeMonthData;
-    DuplicateUpdatesetData?: DuplicateUpdatesetData;
-    syschoiceAnalyzerData?: IPDSyschoiceAnalyzerData;
-    SAMReport?: IAggregatedSAMData[];
-    RoleReport?: IPDAdminRoleData[];
-    UnderUsedLicenses?: ILowUsageLicence[];
-    AttachmentStats?: IAttachmentStats;
-    AsyncAjaxMethodData?: ISyncAjaxMeth[];
-    InsertBusinessRuleData?: IBeforeBRInsertScriptsData[];
 }
 export interface IAggregatedSAMData {
     softwareName: string;
