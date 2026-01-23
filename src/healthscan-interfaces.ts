@@ -1,3 +1,39 @@
+import { EIssueType } from "healthscan-db-types";
+
+/**
+ * Every section must have these properties defined.
+ * @param issueType - the section's type
+ * @param sectionConfig - configurable variables like threshold/limits, useful for doing logic on scanDetails.
+ * @param scanDetails - an array of records associated with the section.
+ */
+interface ISectionBase {
+  issueType: EIssueType;
+  sectionConfig: unknown;
+  scanDetails: unknown[];
+}
+type TSectionTemplate<T extends ISectionBase> = T & {
+  issueType: T["issueType"];
+  sectionConfig: T["sectionConfig"];
+  scanDetails: T["scanDetails"];
+};
+
+export type TSlowQueriesSection = TSectionTemplate<{
+  issueType: EIssueType.SLOW_QUERIES;
+  sectionConfig: {
+    slowQueryThresholdMS: number;
+    maxDisplayedRecords: number;
+    totalQueries: number;
+  };
+  scanDetails: {
+    url: string;
+    execTimeInMS: number;
+    query: string;
+    hhmmss: string;
+    count: number;
+    lastRunDate: string;
+  }[];
+}>;
+
 export interface IPDFACLDBLookupData {
   name: string;
   id: string;
@@ -14,10 +50,10 @@ export interface IPDFACLData {
   groups?: Array<{
     type: string;
     name: string;
-  }>,
+  }>;
   reasons?: Array<{
-    reason: string
-  }>
+    reason: string;
+  }>;
 }
 
 export interface IPDFBusyFormsData {
@@ -27,15 +63,15 @@ export interface IPDFBusyFormsData {
   view?: {
     viewId: string;
     viewName: string;
-  }
+  };
   tableName?: string;
   totalElementCount: number;
   sections: Array<{
     sectionID: string;
     sectionName: string;
     elementCount: number;
-    elementNames: Array<string>
-  }>
+    elementNames: Array<string>;
+  }>;
 }
 
 export interface IPDFDuplicateFieldData {
@@ -45,9 +81,9 @@ export interface IPDFDuplicateFieldData {
 }
 
 export interface IPDFDuplicateScriptIncludes {
-  id: string,
-  name: string,
-  URL: string
+  id: string;
+  name: string;
+  URL: string;
 }
 
 export interface DuplicateUpdatesetData {
@@ -56,20 +92,20 @@ export interface DuplicateUpdatesetData {
     updatesetName: string;
     parent: string;
     parentURL: string;
-    occurrence: number
+    occurrence: number;
   }>;
 }
 
 export interface IAttachmentStats {
-  contentType: string,
-  sizeMB: number,
-  count: number
+  contentType: string;
+  sizeMB: number;
+  count: number;
 }
 
 export interface ISoftwareLicenseInformation {
-  id:string;
+  id: string;
   name: string;
-  state:string;
+  state: string;
   licensesUsed: number;
   licensesAvailable: number;
   totalLicenses: number;
@@ -96,12 +132,12 @@ export interface IPDFInstanceErrorData {
     errorSource: string;
     errorCount: number;
     URL: string;
-  }>
+  }>;
 }
 
 interface TableEntries {
-  tableName: string,
-  recordCount: number
+  tableName: string;
+  recordCount: number;
   URL: string;
   tableType: "NORMAL" | "CUSTOM" | "SYS" | "TASK";
 }
@@ -150,7 +186,6 @@ export interface ReportThreeMonthData {
 }
 
 export interface ScriptIncludeData {
-
   totalQueries: number;
   scriptIncludeQueries: Array<{
     url: string;
@@ -158,7 +193,6 @@ export interface ScriptIncludeData {
     sysId: string;
     clientCallable: boolean;
     active: boolean;
-
   }>;
 }
 
@@ -190,46 +224,19 @@ export interface IPDFSlowScriptsData {
 }
 
 export interface IPDSyschoiceAnalyzerData {
-
   syschoiceQueries: Array<{
-    url: string,
-    counts: string,
-    element: string,
-    tableName: string
+    url: string;
+    counts: string;
+    element: string;
+    tableName: string;
   }>;
 }
 
 export interface IPDAdminRoleData {
-  name: string,
-  email: string,
-  url: string,
-  lastLogin: string
-}
-
-export interface IJsonData {
-  ACLDBLookupData?: IPDFACLDBLookupData[],
-  ACLData?: IPDFACLData[],
-  DuplicateFieldData?: IPDFDuplicateFieldData[],
-  SlowQueryData?: IPDFSlowQueryData,
-  LargeTablesData?: IPDFLargeTablesData,
-  LongTitlesData?: IPDFLongTitlesData,
-  GlobalUIScriptData?: IPDFUIScriptData[],
-  BusyFormsData?: IPDFBusyFormsData[],
-  SlowScriptsData?: IPDFSlowScriptsData,
-  GlobalBRScriptData?: IPDFBRScriptData[],
-  instanceErrorData?: IPDFInstanceErrorData,
-  LongReportData?: IPDFLongReportData,
-  DuplicateScriptIncludes?: IPDFDuplicateScriptIncludes[],
-  ScriptIncludeData?: ScriptIncludeData,
-  ReportsNotRunFor3MonthData?: ReportThreeMonthData,
-  DuplicateUpdatesetData?: DuplicateUpdatesetData,
-  syschoiceAnalyzerData?: IPDSyschoiceAnalyzerData,
-  SAMReport?: IAggregatedSAMData[]
-  RoleReport?: IPDAdminRoleData[],
-  UnderUsedLicenses?: ILowUsageLicence[],
-  AttachmentStats?: IAttachmentStats,
-  AsyncAjaxMethodData?:ISyncAjaxMeth[],
-  InsertBusinessRuleData?:IBeforeBRInsertScriptsData[]
+  name: string;
+  email: string;
+  url: string;
+  lastLogin: string;
 }
 
 export interface IAggregatedSAMData {
@@ -244,15 +251,15 @@ export interface IAggregatedSAMData {
 }
 
 export interface ILowUsageLicence {
-  moduleName: string,
-  usagePercentage: string,
-  recommendation?: string,
-  expired?: boolean,
-  totalLicenses?: number | null,
-  totalUsed?: number | null,
-  isUnderUsed?: boolean
-  pool?: boolean,
-  poolLicences?: any[]
+  moduleName: string;
+  usagePercentage: string;
+  recommendation?: string;
+  expired?: boolean;
+  totalLicenses?: number | null;
+  totalUsed?: number | null;
+  isUnderUsed?: boolean;
+  pool?: boolean;
+  poolLicences?: any[];
 }
 
 export interface ISyncAjaxMeth {
