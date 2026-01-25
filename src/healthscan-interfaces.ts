@@ -296,19 +296,6 @@ export type TScriptIncludeNoACLSection = TSectionTemplate<{
   }[];
 }>;
 
-export interface IPDFSlowQueryData {
-  slowQueryThresholdMS: number;
-  totalQueries: number;
-  slowQueries: Array<{
-    url: string;
-    execTimeInMS: number;
-    query: string;
-    hhmmss: string;
-    count: number;
-    lastRunDate: string;
-  }>;
-}
-
 export type TSlowScriptsSection = TSectionTemplate<{
   issueType: EIssueType.SLOW_SCRIPTS;
   sectionConfig: {
@@ -378,11 +365,3 @@ export type TASyncAjaxMethodsSection = TSectionTemplate<{
     URL: string;
   }[];
 }>;
-
-export interface IBeforeBRInsertScriptsData {
-  name: string;
-  id: string;
-  active: string;
-  condition: string;
-  URL: string;
-}
