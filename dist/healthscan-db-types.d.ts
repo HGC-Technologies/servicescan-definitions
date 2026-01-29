@@ -40,7 +40,8 @@ export declare enum EIssueType {
     ADMIN_ROLE_REPORT = 24,
     UNDERUSED_LICENSES = 26,
     ATTACHMENT_STATS = 28,
-    SOFTWARE_ENTITLEMENTS = 29
+    SOFTWARE_ENTITLEMENTS = 29,
+    HELLO_WORLD = 9999
 }
 export declare const IssueTypeTitleMap: Record<EIssueType, string>;
 export declare const CategoryToIssueTypesMap: Record<ECategory, EIssueType[]>;

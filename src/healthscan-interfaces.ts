@@ -40,6 +40,19 @@ export type TSlowQueriesSection = TSectionTemplate<{
   }[];
 }>;
 
+export type THelloWorldSection = TSectionTemplate<{
+  issueType: EIssueType.HELLO_WORLD;
+  sectionConfig: {
+    someThreshold: number;
+    someProp: number;
+    otherProp: string;
+  };
+  scanDetails: {
+    name: string;
+    lastName: string;
+  }[];
+}>;
+
 export type TACLDBLookupSection = TSectionTemplate<{
   issueType: EIssueType.DATABASE_LOOKUPS_IN_ACCESS_CONTROL_RULES;
   sectionConfig: {};
