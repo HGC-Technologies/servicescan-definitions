@@ -14,6 +14,13 @@ export const CategoryTitleMap: Record<ECategory, string> = {
   [ECategory.PERFORMANCE]: "Performance",
 };
 
+/**
+ * @IMPORTANT
+ * The numeric IDs associated with EIssueType keys are
+ * directly tied to the Postgres DB `sections` table's `issue_type` column.
+ *
+ * Do not modify existing IDs.
+ */
 export enum EIssueType {
   SLOW_QUERIES = 1,
   LARGE_TABLES = 2,
@@ -39,7 +46,7 @@ export enum EIssueType {
   SAM_REPORT = 22,
   HAM_REPORT = 23,
   ADMIN_ROLE_REPORT = 24,
-  INSTANCE_LICENSES = 25,
+  //INSTANCE_LICENSES = 25,
   UNDERUSED_LICENSES = 26,
   //MONTHLY_REPORT=27,
   ATTACHMENT_STATS = 28,
@@ -74,7 +81,6 @@ export const IssueTypeTitleMap: Record<EIssueType, string> = {
   [EIssueType.SAM_REPORT]: "Sofware Asset Management Report",
   [EIssueType.HAM_REPORT]: "Hardware Asset Management Report",
   [EIssueType.ADMIN_ROLE_REPORT]: "Admin Count Above Limit",
-  [EIssueType.INSTANCE_LICENSES]: "Licenses Not Being Used",
   [EIssueType.UNDERUSED_LICENSES]: "Underutilized Licenses",
   [EIssueType.ATTACHMENT_STATS]: "Attachment stats",
   [EIssueType.SOFTWARE_ENTITLEMENTS]: "Software Entitlements",
@@ -100,7 +106,6 @@ export const CategoryToIssueTypesMap: Record<ECategory, EIssueType[]> = {
   [ECategory.UPGRADABILITY]: [
     EIssueType.LAST_SYSTEM_UPGRADE,
     EIssueType.REPORT_3_MONTHS,
-    EIssueType.INSTANCE_LICENSES,
     EIssueType.UNDERUSED_LICENSES,
     EIssueType.SOFTWARE_ENTITLEMENTS,
   ],

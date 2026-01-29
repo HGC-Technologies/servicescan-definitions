@@ -16,6 +16,13 @@ exports.CategoryTitleMap = {
     [ECategory.SECURITY]: "Security",
     [ECategory.PERFORMANCE]: "Performance",
 };
+/**
+ * @IMPORTANT
+ * The numeric IDs associated with EIssueType keys are
+ * directly tied to the Postgres DB `sections` table's `issue_type` column.
+ *
+ * Do not modify existing IDs.
+ */
 var EIssueType;
 (function (EIssueType) {
     EIssueType[EIssueType["SLOW_QUERIES"] = 1] = "SLOW_QUERIES";
@@ -42,7 +49,7 @@ var EIssueType;
     EIssueType[EIssueType["SAM_REPORT"] = 22] = "SAM_REPORT";
     EIssueType[EIssueType["HAM_REPORT"] = 23] = "HAM_REPORT";
     EIssueType[EIssueType["ADMIN_ROLE_REPORT"] = 24] = "ADMIN_ROLE_REPORT";
-    EIssueType[EIssueType["INSTANCE_LICENSES"] = 25] = "INSTANCE_LICENSES";
+    //INSTANCE_LICENSES = 25,
     EIssueType[EIssueType["UNDERUSED_LICENSES"] = 26] = "UNDERUSED_LICENSES";
     //MONTHLY_REPORT=27,
     EIssueType[EIssueType["ATTACHMENT_STATS"] = 28] = "ATTACHMENT_STATS";
@@ -74,7 +81,6 @@ exports.IssueTypeTitleMap = {
     [EIssueType.SAM_REPORT]: "Sofware Asset Management Report",
     [EIssueType.HAM_REPORT]: "Hardware Asset Management Report",
     [EIssueType.ADMIN_ROLE_REPORT]: "Admin Count Above Limit",
-    [EIssueType.INSTANCE_LICENSES]: "Licenses Not Being Used",
     [EIssueType.UNDERUSED_LICENSES]: "Underutilized Licenses",
     [EIssueType.ATTACHMENT_STATS]: "Attachment stats",
     [EIssueType.SOFTWARE_ENTITLEMENTS]: "Software Entitlements",
@@ -97,7 +103,6 @@ exports.CategoryToIssueTypesMap = {
     [ECategory.UPGRADABILITY]: [
         EIssueType.LAST_SYSTEM_UPGRADE,
         EIssueType.REPORT_3_MONTHS,
-        EIssueType.INSTANCE_LICENSES,
         EIssueType.UNDERUSED_LICENSES,
         EIssueType.SOFTWARE_ENTITLEMENTS,
     ],

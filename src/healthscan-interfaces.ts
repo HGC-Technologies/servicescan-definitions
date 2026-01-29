@@ -14,6 +14,7 @@ interface ISectionBase {
   sectionConfig: unknown;
   scanDetails: unknown[];
 }
+
 /**
  * When defining a new section, use the section template.
  * It makes typescript enforce the required types for each section.

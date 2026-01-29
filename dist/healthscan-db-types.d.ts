@@ -6,6 +6,13 @@ export declare enum ECategory {
     PERFORMANCE = 5
 }
 export declare const CategoryTitleMap: Record<ECategory, string>;
+/**
+ * @IMPORTANT
+ * The numeric IDs associated with EIssueType keys are
+ * directly tied to the Postgres DB `sections` table's `issue_type` column.
+ *
+ * Do not modify existing IDs.
+ */
 export declare enum EIssueType {
     SLOW_QUERIES = 1,
     LARGE_TABLES = 2,
@@ -31,7 +38,6 @@ export declare enum EIssueType {
     SAM_REPORT = 22,
     HAM_REPORT = 23,
     ADMIN_ROLE_REPORT = 24,
-    INSTANCE_LICENSES = 25,
     UNDERUSED_LICENSES = 26,
     ATTACHMENT_STATS = 28,
     SOFTWARE_ENTITLEMENTS = 29
